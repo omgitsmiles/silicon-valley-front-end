@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ResponsiveAppBar from "./components/Navbar";
 import HomePage from "./components/HomePage";
-import CharacterCard from "./components/CharacterCard";
 import { Routes, Route } from 'react-router-dom';
 
 function App() {

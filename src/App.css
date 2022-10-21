@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  font-size: 1vw;
+  text-align: center;
+  padding: 1rem;
+  width: 18%;
+  height: 20rem;
+  display: inline-block;
+  line-height: .08;
+  margin: 1rem 2rem;
+}
