@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import ResponsiveAppBar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+import CharacterCard from "./components/CharacterCard";
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
+ const [characters, setCharacters] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/characters")
+    .then(r => r.json())
+    .then(setCharacters)
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ResponsiveAppBar />
+      <Routes>
+        <Route path="/home" element={<HomePage characters={characters}/>}/>
+        <Route path="*" element={<h1>Took a wrong turn</h1>}/>
+      </Routes>
     </div>
   );
 }
