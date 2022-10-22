@@ -1,37 +1,40 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { CardActionArea, Button, CardActions } from '@mui/material';
 
 const CharacterCard = ({ character }) => {
+    const [showApp, setShowApp] = useState(false)
 
-    console.log(character)
+    const renderApps = character.apps.map(a => (<li key={a.name}>{a.name}</li>))
 
+    
 
   return (
-    <div>
-    <Card className="card" sx={{ maxWidth: 200 }}>
-        <CardMedia
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
         component="img"
-        height="50"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        height="140"
+        image={character.character_img}
         alt={character.name}
-        />
-        <CardContent>
+      />
+      <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-            {character.name}
+          {character.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-            {character.quote}
+          {character.quote}
         </Typography>
-        </CardContent>
-        <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-        </CardActions>
+      </CardContent>
+      <CardActions>
+        <Button size="small" onClick={()=> setShowApp(showApp => !showApp)}>Learn More</Button>
+        {showApp ? (<div>Apps:
+            {renderApps} 
+        </div>) : null}
+      </CardActions>
     </Card>
     </div>
   )

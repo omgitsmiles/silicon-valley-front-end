@@ -8,8 +8,6 @@ const HomePage = ({ characters }) => {
         <CharacterCard key={character.id} character={character}/>
     ))
 
-    console.log(renderCharacters)
-
   return (
     <main>
         {renderCharacters}
