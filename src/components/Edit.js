@@ -6,21 +6,33 @@ import { Button } from "@mui/material";
 
 const Edit = ({ characters }) => {
     const [select, setSelect] = useState("")
-    const [info, setInfo] = useState("")
+    const [appName, setAppName] = useState("")
+    const [motto, setMotto] = useState("")
    
     const renderCharacters = characters.map(character => character.name)
 
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
+        const newApp = {name: appName, motto: motto}
         const searched = characters.find(character => character.name === select)
         if (searched !== undefined) {
-            
+            fetch(`http://localhost:9292/characters/${characters.id}/apps`, {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify(newApp)
+            })
+            setAppName("")
+            setMotto("")
         } else {
-            setInfo(false)
+            console.log("not here")
         }
     }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <form onSubmit={handleClick}>
         <Autocomplete
                 className="aboutTest"
                 disablePortal
@@ -31,17 +43,14 @@ const Edit = ({ characters }) => {
                 renderInput={(params) => <TextField {...params} label="Developer" />}
                 />
                 <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <div>
                 <TextField
                 required
                 id="filled-basic"
                 label="App Name"
                 variant="filled"
-                // value={title}
-                // onChange={(e) => setTitle(e.target.value)}
+                value={appName}
+                onChange={(e) => setAppName(e.target.value)}
                 />
         </div>
             <br></br>
@@ -50,13 +59,14 @@ const Edit = ({ characters }) => {
                 id="filled-basic"
                 label="Description"
                 variant="filled"
-                // value={description}
-                // onChange={(e) => setDescription(e.target.value)}
+                value={motto}
+                onChange={(e) => setMotto(e.target.value)}
                 />
                 <div>
                     <br></br>
-                    <Button variant="contained" type="submit" onClick={handleClick}>Add</Button>
+                    <Button variant="contained" type="submit">Add</Button>
                 </div>
+        </form>
     </div>
   )
 }
