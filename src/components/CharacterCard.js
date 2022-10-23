@@ -3,12 +3,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Button, CardActions } from '@mui/material';
+import { Button, CardActions } from '@mui/material';
 
 const CharacterCard = ({ character }) => {
     const [showApp, setShowApp] = useState(false)
 
-    const renderApps = character.apps.map(a => (<li key={a.name}>{a.name}</li>))
+    const renderApps = character.apps.map((a, index) => (<>
+        <li key={index}>{a.name}</li>
+        <Button>Edit</Button>
+    </>))
 
     
 
