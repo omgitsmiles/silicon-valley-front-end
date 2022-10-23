@@ -13,13 +13,7 @@ const Edit = ({ characters }) => {
     const handleClick = () => {
         const searched = characters.find(character => character.name === select)
         if (searched !== undefined) {
-            setInfo(info => !info)
-            return searched.apps.map((a, index) => (
-                <>
-                <ul key={index}>{a.name}</ul>
-                <li>{a.motto}</li>
-                </>
-            )) 
+            
         } else {
             setInfo(false)
         }
@@ -42,10 +36,9 @@ const Edit = ({ characters }) => {
             <br></br>
             <div>
                 <TextField
-                className="addMovie"
                 required
                 id="filled-basic"
-                label="Title"
+                label="App Name"
                 variant="filled"
                 // value={title}
                 // onChange={(e) => setTitle(e.target.value)}
@@ -53,7 +46,6 @@ const Edit = ({ characters }) => {
         </div>
             <br></br>
                 <TextField
-                className="addMovie"
                 required
                 id="filled-basic"
                 label="Description"
@@ -61,20 +53,9 @@ const Edit = ({ characters }) => {
                 // value={description}
                 // onChange={(e) => setDescription(e.target.value)}
                 />
-            <br></br>
-            <br></br>
-                <TextField
-                className="addMovie"
-                required
-                id="filled-basic"
-                label="Movie Poster"
-                variant="filled"
-                // value={image}
-                // onChange={(e) => setImage(e.target.value)}
-                />
                 <div>
                     <br></br>
-                    <Button variant="contained" type="submit" onClick={handleClick}>Create</Button>
+                    <Button variant="contained" type="submit" onClick={handleClick}>Add</Button>
                 </div>
     </div>
   )

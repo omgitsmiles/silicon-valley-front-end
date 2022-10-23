@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <ResponsiveAppBar />
       <Routes>
-        <Route path="/home" element={<HomePage characters={characters}/>}/>
+        <Route path="/home" element={<HomePage characters={characters} element={setCharacters}/>}/>
         <Route path="/edit" element={<Edit characters={characters} setCharacters={setCharacters}/>}/>
         <Route path="*" element={<h1>Took a wrong turn</h1>}/>
       </Routes>
